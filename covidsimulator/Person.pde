@@ -2,7 +2,7 @@ class Person{
   PVector pos;
   boolean isPos;
   float r = 10;
-  float noisecounter=random(100);
+  float noisecounter=random(10000);
   float counter=0;
   int timeof;//time the illness takes
   //need to implement the counter of covid
@@ -35,8 +35,9 @@ class Person{
     //use perlin noise
     //take two perlin noises, and 
     float intensity = 1.5;
-    float directionx = noise(noisecounter)*2-.98;
-    float directiony = noise(noisecounter+50)*2-.98;
+    float k=0.93133;
+    float directionx = noise(noisecounter)*2-k;
+    float directiony = noise(noisecounter+50)*2-k;
     this.noisecounter+=0.01;
     
     this.pos.x+=directionx*intensity;
@@ -60,7 +61,7 @@ class Person{
   void contagiar(Person p){
     //acá podría hacer que, en vez de verificar si está dentro de una distancia;
     //que la probabilidad sea inversamente proporcional a la distancia
-    if(PVector.dist(p.pos, this.pos)<60 && this.isPos==false){
+    if(PVector.dist(p.pos, this.pos)<50 && this.isPos==false){
       float ratio = 1;
       float prob = random(100);
       if(p.isPos){

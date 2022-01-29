@@ -2,6 +2,7 @@ class Person{
   PVector pos;
   boolean isPos;
   float r = 10;
+  float noisecounter=random(100);
   
   Person(boolean isPositive){
     pos = new PVector(random(width), random(height));
@@ -20,18 +21,15 @@ class Person{
   
   void move(){
     //use perlin noise
+    //take two perlin noises, and 
     int n = 1;
-    float direction = random(4);
-    if(direction<1){
-      this.pos.x+=n;
-    }else if(direction<2){
-      this.pos.x-=n;
-    }else if(direction<3){
-      this.pos.y+=n;
-    }else if(direction<4){
-      this.pos.y-=n;
-    }
-    //borders
+    float directionx = noise(noisecounter);
+    float directiony = noise(-noisecounter);
+    
+    this.pos.x+=directionx;
+    this.pos.y+=directiony;
+    
+    //borders  
     
     if (this.pos.x<0){
       this.pos.x=0;
@@ -43,6 +41,7 @@ class Person{
     }else if (this.pos.y>=height){
       this.pos.y=height;
     }  
+    this.noisecounter+=0.1;
   }
   
   void contagiar(Person p){

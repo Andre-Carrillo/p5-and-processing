@@ -7,12 +7,13 @@ class Person {
   int timeof;//time the illness takes
   boolean isInm;
   int timeofinm;
+  int timeofinmunity=400;
 
   Person(boolean isPositive) {
     pos = new PVector(random(width), random(height));
     isPos = isPositive;
     isInm=false;
-    timeof=150;
+    timeof=300;
     if (isPos) {
       counter=timeof;
     }
@@ -33,7 +34,7 @@ class Person {
       if (this.counter==0) {
         this.isPos=false;
         isInm=true;
-        timeofinm=3*timeof;
+        timeofinm=timeofinmunity;
       }
     }
     if (isInm) {

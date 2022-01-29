@@ -7,13 +7,13 @@ class Person {
   int timeof;//time the illness takes
   boolean isInm;
   int timeofinm;
-  int timeofinmunity=400;
+  int timeofinmunity=600;
 
   Person(boolean isPositive) {
     pos = new PVector(random(width), random(height));
     isPos = isPositive;
     isInm=false;
-    timeof=300;
+    timeof=700;
     if (isPos) {
       counter=timeof;
     }
@@ -35,12 +35,16 @@ class Person {
         this.isPos=false;
         isInm=true;
         timeofinm=timeofinmunity;
+        illdelta--;
+        inmdelta++;
       }
     }
     if (isInm) {
       timeofinm--;
       if (timeofinm==0) {
         isInm=false;
+        inmdelta--;
+        hdelta++;
       } 
     }
   }
@@ -75,12 +79,14 @@ class Person {
     //acá podría hacer que, en vez de verificar si está dentro de una distancia;
     //que la probabilidad sea inversamente proporcional a la distancia
     if (PVector.dist(p.pos, this.pos)<50 && this.isPos==false && this.isInm==false) {
-      float ratio = 1;
+      float ratio = 0.2;
       float prob = random(100);
       if (p.isPos) {
         if (prob<ratio) {
           this.isPos=true;
           this.counter=this.timeof;
+          illdelta++;
+          hdelta--;
         }
       }
     }

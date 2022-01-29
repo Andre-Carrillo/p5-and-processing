@@ -1,10 +1,10 @@
 
 ArrayList<Person> People;
-int number_of_healthy_people=30;
+int number_of_healthy_people=100;
 int number_of_ill_people=2;
 
 void setup(){
-  size(400, 400);
+  size(600, 600);
   People = new ArrayList<Person>();
   for(int i=0; i<number_of_healthy_people; i++){    
     People.add(new Person(false));

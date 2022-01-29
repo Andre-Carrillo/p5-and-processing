@@ -22,12 +22,13 @@ class Person{
   void move(){
     //use perlin noise
     //take two perlin noises, and 
-    int n = 1;
-    float directionx = noise(noisecounter);
-    float directiony = noise(-noisecounter);
+    float intensity = 1.5;
+    float directionx = noise(noisecounter)*2-.99;
+    float directiony = noise(noisecounter+50)*2-.99;
+    this.noisecounter+=0.01;
     
-    this.pos.x+=directionx;
-    this.pos.y+=directiony;
+    this.pos.x+=directionx*intensity;
+    this.pos.y+=directiony*intensity;
     
     //borders  
     
@@ -41,7 +42,7 @@ class Person{
     }else if (this.pos.y>=height){
       this.pos.y=height;
     }  
-    this.noisecounter+=0.1;
+
   }
   
   void contagiar(Person p){

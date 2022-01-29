@@ -1,5 +1,5 @@
 ArrayList<Person> People;
-int number_of_healthy_people=100;
+int number_of_healthy_people=500;
 int number_of_ill_people=2;
 int globalcounter;
 int hdelta, illdelta, inmdelta;
@@ -9,7 +9,7 @@ IntDict inmcounter;
 
 
 void setup() {
-  size(600, 600);
+  size(700, 700);
   People = new ArrayList<Person>();
   globalcounter=0;
   healthycounter = new IntDict();
@@ -50,7 +50,8 @@ void draw() {
 }
 
 void mousePressed(){
-  JSONArray data = new JSONArray();
+  JSONObject data = new JSONObject();
+  JSONArray raw_data = new JSONArray();
   for (int i=0; i<healthycounter.size();i++){
     JSONObject object = new JSONObject();
     object.setInt("time", i);
@@ -58,8 +59,9 @@ void mousePressed(){
     object.setInt("ill", illcounter.get(str(i)));
     object.setInt("inmune", inmcounter.get(str(i)));
     
-    data.setJSONObject(i, object);
+    raw_data.setJSONObject(i, object);
   }
-  saveJSONArray(data, "data/"+"at_"+globalcounter+".json");  
+  data.setJSONArray("data", raw_data);
+  saveJSONObject(data, "data/"+"at_"+globalcounter+".json");  
   println("data saved at: "+"data/"+"at_"+globalcounter+".json");
 }

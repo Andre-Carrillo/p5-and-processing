@@ -1,20 +1,30 @@
 ArrayList<Person> People;
-int number_of_healthy_people=500;
-int number_of_ill_people=2;
 int globalcounter;
-int hdelta, illdelta, inmdelta;
+int hdelta, illdelta, inmdelta, deaddelta;
 IntDict healthycounter;
 IntDict illcounter;
 IntDict inmcounter;
+IntDict deadcounter;
 
+//PARAMETERS
+int number_of_healthy_people=300;
+int number_of_ill_people=2;
+int diameter=10;
+int time_of_inmunity=300;
+int time_of_illness=700;
+float probability_of_surviving=85;
+float probability_of_spread=0.2;
+float intensity_of_movement=1.5;
+float limit_safe_radius=50;
 
 void setup() {
-  size(700, 700);
+  size(600, 600);
   People = new ArrayList<Person>();
   globalcounter=0;
   healthycounter = new IntDict();
   illcounter = new IntDict();
   inmcounter = new IntDict();
+  deadcounter = new IntDict();
   for (int i=0; i<number_of_healthy_people; i++) {    
     People.add(new Person(false));
   }
@@ -24,6 +34,7 @@ void setup() {
   healthycounter.set(str(globalcounter), number_of_healthy_people);
   illcounter.set(str(globalcounter), number_of_ill_people);
   inmcounter.set(str(globalcounter), 0);
+  deadcounter.set(str(globalcounter), 0);
 }
 
 void draw() {
@@ -32,6 +43,7 @@ void draw() {
   hdelta=0;
   illdelta=0;
   inmdelta=0;
+  deaddelta=0;
   for (int i=0; i<People.size(); i++) {
     People.get(i).render();
     People.get(i).move();
@@ -43,6 +55,7 @@ void draw() {
   healthycounter.set(str(globalcounter), hdelta+healthycounter.get(str(globalcounter-1)));
   illcounter.set(str(globalcounter), illdelta+illcounter.get(str(globalcounter-1)));
   inmcounter.set(str(globalcounter), inmdelta+inmcounter.get(str(globalcounter-1)));
+  deadcounter.set(str(globalcounter), deaddelta+deadcounter.get(str(globalcounter-1)));
   
   //if(globalcounter%100==0){
   //  println(inmcounter);
@@ -58,6 +71,7 @@ void mousePressed(){
     object.setInt("healthy", healthycounter.get(str(i)));
     object.setInt("ill", illcounter.get(str(i)));
     object.setInt("inmune", inmcounter.get(str(i)));
+    object.setInt("dead", deadcounter.get(str(i)));
     
     raw_data.setJSONObject(i, object);
   }

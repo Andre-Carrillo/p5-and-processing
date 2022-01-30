@@ -78,8 +78,8 @@ class Person {
   void contagiar(Person p) {
     //acá podría hacer que, en vez de verificar si está dentro de una distancia;
     //que la probabilidad sea inversamente proporcional a la distancia
-    if (PVector.dist(p.pos, this.pos)<50 && this.isPos==false && this.isInm==false) {
-      float ratio = 0.2;
+    if (PVector.dist(p.pos, this.pos)<100 && this.isPos==false && this.isInm==false) {
+      float ratio = 1.0/PVector.dist(p.pos, this.pos);
       float prob = random(100);
       if (p.isPos) {
         if (prob<ratio) {

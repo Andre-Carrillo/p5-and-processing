@@ -23,7 +23,7 @@ class Person {
 
   void render() {
     if (isDead) {
-      fill(92, 90, 88);
+      fill(92, 90, 88, 50);
     } else if (isPos) {
       fill(200, 56, 88);
     } else if (isInm) {

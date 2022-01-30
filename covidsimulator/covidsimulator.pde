@@ -10,12 +10,12 @@ IntDict deadcounter;
 int number_of_healthy_people=300;
 int number_of_ill_people=2;
 int diameter=10;
-int time_of_inmunity=300;
-int time_of_illness=700;
+int time_of_inmunity=600;
+int time_of_illness=200;
 float probability_of_surviving=85;
-float probability_of_spread=0.2;
+float probability_of_spread=0.05;
 float intensity_of_movement=1.5;
-float limit_safe_radius=50;
+float limit_safe_radius=100;
 
 void setup() {
   size(600, 600);

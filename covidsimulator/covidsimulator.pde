@@ -13,7 +13,7 @@ int diameter=10;
 int time_of_inmunity=600;
 int time_of_illness=200;
 float probability_of_surviving=85;
-float probability_of_spread=0.05;
+float probability_of_spread=2;
 float intensity_of_movement=1.5;
 float limit_safe_radius=100;
 
